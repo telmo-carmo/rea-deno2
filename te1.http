@@ -45,7 +45,8 @@ Content-Type: application/json
 }
 
 ###
-@tok1 = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkZW1vIiwiZXhwIjoxNzM0MzYyNDIzLCJyb2xlIjoidXNlciJ9.ZERre_-AIyKppWc5KkIcHI12DJEnYEb9kt-l-dp2qwk
+@tok1 = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkZW1vIiwiZXhwIjoxNzM0Mzg4NDA2LCJyb2xlIjoidXNlciJ9.WM_lvFpqjrU2IXzIXsmgGjejgL7qSYA_zstkl4qkBkI
+
 
 ###
 GET {{host1}}/auth/health
