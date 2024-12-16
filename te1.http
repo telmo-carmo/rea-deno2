@@ -1,0 +1,54 @@
+@host1 = http://localhost:8001
+
+###
+GET {{host1}}/api/bonus
+
+###
+GET {{host1}}/api/bonus/Alice
+
+###
+POST {{host1}}/api/bonus
+Content-Type: application/json
+
+{
+  "ename": "Zorro",
+  "job": "Criminal",
+  "sal": 3000,
+  "comm": 200
+}
+
+###
+PUT {{host1}}/api/bonus/Zorro
+Content-Type: application/json
+
+{
+  "ename": "Zorro",
+  "job": "Criminal",
+  "sal": 2000,
+  "comm": 100
+}
+
+###
+GET {{host1}}/api/bonus/Zorro
+
+###
+DELETE {{host1}}/api/bonus/Zorro
+
+
+###
+POST {{host1}}/auth/login
+Content-Type: application/json
+
+{
+    "uid": "demo",
+    "pwd": "123"
+}
+
+###
+@tok1 = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkZW1vIiwiZXhwIjoxNzM0MzYyNDIzLCJyb2xlIjoidXNlciJ9.ZERre_-AIyKppWc5KkIcHI12DJEnYEb9kt-l-dp2qwk
+
+###
+GET {{host1}}/auth/health
+Authorization: Bearer {{tok1}}
+
+###
