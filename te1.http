@@ -1,4 +1,4 @@
-@host1 = http://localhost:8000
+@host1 = http://localhost:8001
 
 ###
 GET {{host1}}/api/bonus

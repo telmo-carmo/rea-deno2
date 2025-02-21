@@ -68,14 +68,14 @@ function getPortFromArgs(): number {
   }
 
   if (!portArg) {
-    logger.info("Using default port: " + default_port);
+    console.log("Using default port: " + default_port);
     return default_port; // Default port
   }
 
   const port = Number(portArg);
 
   if (isNaN(port) || port < 1 || port > 65535) {
-    logger.error("Invalid port number provided. Using default port: " + default_port);
+    console.error("Invalid port number provided. Using default port: " + default_port);
     return default_port;
   }
 
@@ -139,7 +139,7 @@ router
     const token = authHeader.split(" ")[1];
     try {
       const payload = await verify(token, jwt_key);
-      logger.info("Token payload:", payload);
+      console.log("Token payload:", payload);
       const now = new Date();
       const formattedNow = format(now, "yyyy-MM-dd HH:mm:ss");
       ctx.response.body = {
@@ -147,8 +147,7 @@ router
         message: "Build a CRUD API with Deno",
         now: formattedNow,
       };
-    } catch (err) {
-      logger.error("Invalid token", err);
+    } catch (_err) {
       ctx.response.status = 401;
       ctx.response.body = { error: "Invalid token" };
     }
