@@ -180,11 +180,13 @@ router
   .post("/api/bonus", async (context) => {
     const body = await context.request.body.json() as BnData;
     my_bonus.push(body);
+    logger.info(`Added bonus ename=${body.ename}`);
     context.response.status = 201;
     context.response.body = body;
   })
   .put("/api/bonus/:id", async (context) => {
     const id = context.params.id;
+    logger.info(`Update bonus id=${id}`);
     const body = await context.request.body.json() as BnData;
     const index = my_bonus.findIndex((e) => e.ename === id);
     if (index !== -1) {
