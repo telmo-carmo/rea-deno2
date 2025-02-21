@@ -8,7 +8,10 @@ deno run dev:api
 
 
 */
-import { Application, Router, Middleware  } from "https://deno.land/x/oak/mod.ts";
+import { Application } from "jsr:@oak/oak/application";
+import { Router } from "jsr:@oak/oak/router";
+import { Middleware } from "jsr:@oak/oak/middleware";
+
 import { oakCors } from "https://deno.land/x/cors/mod.ts";
 import { format } from "https://deno.land/std/datetime/mod.ts";
 import {  create,  getNumericDate,  verify } from "https://deno.land/x/djwt/mod.ts";
@@ -30,7 +33,7 @@ export const logger = await Logger.getInstance(
 
 const jwt_key = await crypto.subtle.importKey(
   "raw",
-  new TextEncoder().encode("my-very-secret-key"), // Replace with your actual key
+  new TextEncoder().encode(Deno.env.get("JWT_SECRET_KEY") || "my-very-secret-key"),
   { name: "HMAC", hash: "SHA-256" },
   false,
   ["sign", "verify"],
@@ -47,6 +50,7 @@ const my_bonus: BnData[] = [
   { ename: "Alice", job: "Manager", sal: 5000, comm: 500 },
   { ename: "Bob", job: "Developer", sal: 4000, comm: 300 },
   { ename: "Charlie", job: "Designer", sal: 3500, comm: 200 },
+  { ename: "Joana", job: "Tester", sal: 2500, comm: 100 },
 ];
 
 // Function to parse the port from command-line arguments
@@ -161,9 +165,9 @@ router
   .get("/api/bonus/:id", (context) => {
     const id = context.params.id;
     logger.info(`GET /api/bonus/${context.params.id}`);
-    const employee = my_bonus.find((e) => e.ename === id);
-    if (employee) {
-      context.response.body = employee;
+    const bn = my_bonus.find((e) => e.ename === id);
+    if (bn) {
+      context.response.body = bn;
     } else {
       context.response.status = 404;
       context.response.body = { message: "Bonus not found" };
