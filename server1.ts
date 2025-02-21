@@ -217,4 +217,5 @@ app.use(routeStaticFilesFrom([
 
 const my_port = getPortFromArgs();
 logger.info(`Server listening on port ${my_port}`);
+
 await app.listen({ port: my_port });
