@@ -2,6 +2,8 @@
 
 React @MUI + deno 2 app + vite build
 
+deno install
+deno run build
 deno run --allow-env --allow-net --allow-read --allow-write  server1.ts
  OR
 deno run dev:api
@@ -51,6 +53,8 @@ const my_bonus: BnData[] = [
   { ename: "Bob", job: "Developer", sal: 4000, comm: 300 },
   { ename: "Charlie", job: "Designer", sal: 3500, comm: 200 },
   { ename: "Joana", job: "Tester", sal: 2500, comm: 100 },
+  { ename: "Michael", job: "Developer", sal: 3000, comm: 150 },
+  { ename: "Maria", job: "Designer", sal: 1400, comm: 120 },
 ];
 
 // Function to parse the port from command-line arguments
